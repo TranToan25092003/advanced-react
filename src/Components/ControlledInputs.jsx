@@ -2,86 +2,56 @@ import React, { useState } from "react";
 import { data } from "../data";
 import { v4 as uuidv4 } from "uuid";
 export function ControlledInputs({}) {
-  const [user, setUser] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+  const frameworks = ["react", "angular", "vue", "svelte"];
 
-  const handleChange = (e) => {
-    console.log(e.target);
-    const nameInput = e.target.name;
-    const valueInput = e.target.value;
-    setUser((old) => {
-      return { ...old, [nameInput]: valueInput };
-    });
-    console.log(user);
+  const [shipping, setShipping] = useState(false);
+
+  const [framework, setFramework] = useState("react");
+
+  const handleSubmit = () => {};
+
+  const handleShipping = (e) => {
+    console.log(e.target.checked);
+    setShipping(e.target.checked);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // check empty value
-    console.log(user);
-    setUser({ name: "", email: "", password: "" });
-    // do st
+  const handleFramework = (e) => {
+    setFramework(e.target.value);
   };
 
   return (
     <>
       <form action="" className="form" onSubmit={handleSubmit}>
-        <h4>Add user</h4>
-
-        {/* name */}
+        {/* shipping */}
         <div className="form-row">
-          <label htmlFor="name" className="form-label">
-            name
-          </label>
+          <label htmlFor="shipping">Free shipping</label>
           <input
-            type="text"
-            name="name"
-            id="name"
-            className="form-input"
-            value={user.name}
-            onChange={handleChange}
+            type="checkbox"
+            name="shipping"
+            id="shipping"
+            checked={shipping}
+            onChange={handleShipping}
           />
         </div>
 
-        {/* email */}
+        {/* frameworks */}
+
         <div className="form-row">
-          <label htmlFor="email" className="form-label">
-            email
+          <label htmlFor="framework" className="form-label">
+            Frameworks
           </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="form-input"
-            value={user.email}
-            onChange={handleChange}
-          />
+          <select name="framework" id="framework" onChange={handleFramework}>
+            {frameworks.map((frame) => {
+              return (
+                <>
+                  <option key={uuidv4()} value={frame}>
+                    {frame}
+                  </option>
+                </>
+              );
+            })}
+          </select>
         </div>
-
-        {/* password */}
-
-        {/* email */}
-        <div className="form-row">
-          <label htmlFor="password" className="form-label">
-            password
-          </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            className="form-input"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* submit btn */}
-        <button type="submit" className="btn btn-block">
-          Submit
-        </button>
       </form>
     </>
   );

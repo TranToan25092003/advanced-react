@@ -1,11 +1,11 @@
-import { ControlledInputs } from "./Components/ControlledInputs";
 import "./App.css";
+import FetchData from "./tutorial/08-custom-hooks/starter/02-fetch-data";
 
 function App() {
   return (
     <>
       <div className="container">
-        <ControlledInputs />
+        <FetchData></FetchData>
       </div>
     </>
   );

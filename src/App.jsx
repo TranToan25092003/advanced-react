@@ -1,11 +1,11 @@
-import { ControlledInputs } from "./Components/ControlledInputs";
 import "./App.css";
+import Navbar from "./tutorial/09-context-api/starter/Navbar";
 
 function App() {
   return (
     <>
       <div className="container">
-        <ControlledInputs />
+        <Navbar></Navbar>
       </div>
     </>
   );
